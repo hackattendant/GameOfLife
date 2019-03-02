@@ -14,6 +14,7 @@ glider = np.array([[1, 0, 0],
                    [1, 1, 0]])
 
 
+# helper functions
 def clear_screen():
     """Attempts to clear the terminal/console/screen of operating system being
             used to run the program.
@@ -83,8 +84,8 @@ def get_live_neighbors(row, col, grid):
 
 
 def get_next_generation(grid, next_grid):
-    """Determins the next generation by deciding which cells live and die in the
-        current generation passed in.
+    """Determins the next generation by deciding which cells live and die in
+        the current generation passed in.
 
     Args:
         grid (np.array): The grid that represents the current alive and dead
@@ -107,6 +108,7 @@ def get_next_generation(grid, next_grid):
                 next_grid[row][col] = grid[row][col]
 
 
+# tests
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
     rows = 15
