@@ -13,6 +13,10 @@ glider = np.array([[1, 0, 0],
                    [0, 1, 1],
                    [1, 1, 0]])
 
+simple = np.array([[0, 1, 0],
+                   [1, 1, 1],
+                   [0, 1, 0]])
+
 
 # helper functions
 def clear_screen():
@@ -111,14 +115,19 @@ def get_next_generation(grid, next_grid):
 # tests
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
-    rows = 15
-    cols = 15
+    rows = 30
+    cols = 30
     test_grid = np.zeros((rows, cols), int)
-    # np.fill_diagonal(test_grid, 1)
+    np.fill_diagonal(test_grid, 1)
 
     # add glider to test grid
     test_grid[:3, :3] = glider
     next_test_grid = np.zeros((rows, cols))
+    test_grid[19:22, :3] = glider
+    test_grid[:3, 15:18] = glider
+    test_grid[16:19, :3] = simple
+    # test_grid[row-3:row, row-8:row-5] = simple
+    # test_grid[30:33, 30:33] = simple
 
     for i in range(100):
         clear_screen()
