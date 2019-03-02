@@ -62,6 +62,13 @@ def get_next_generation(rows, cols, grid, next_grid):
 
 
 def clear_screen():
+    """Attempts to clear the terminal/console/screen of operating system being
+            used to run the program.
+
+    Args: None.
+
+    Returns: None.
+    """
     if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
         os.system('clear')
     elif sys.platform.startswith('win'):
@@ -72,7 +79,7 @@ def clear_screen():
 
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
-    rows = 10
+    rows = 15
     cols = 10
     test_grid = np.zeros((10, 10), int)
     # np.fill_diagonal(test_grid, 1)
