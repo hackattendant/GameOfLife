@@ -3,6 +3,9 @@
 # -----------------------------------------------------------------------
 
 # imports
+import sys
+import os
+import time
 import numpy as np
 
 # configurations
@@ -58,6 +61,15 @@ def get_next_generation(rows, cols, grid, next_grid):
                 next_grid[row][col] = grid[row][col]
 
 
+def clear_screen():
+    if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
+        os.system('clear')
+    elif sys.platform.startswith('win'):
+        os.system('cls')
+    else:
+        print("Program unable to clear your screen\n\r")
+
+
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
     rows = 10
@@ -70,8 +82,9 @@ if __name__ == "__main__":
     next_test_grid = np.zeros((10, 10))
 
     for i in range(10):
+        clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
-        print("\n")
+        time.sleep(1 / 3.0)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
