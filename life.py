@@ -85,7 +85,7 @@ if __name__ == "__main__":
     rows = 15
     cols = 15
     test_grid = np.zeros((rows, cols), int)
-    # np.fill_diagonal(test_grid, 1)
+    np.fill_diagonal(test_grid, 1)
 
     # add glider to test grid
     test_grid[:3, :3] = glider
