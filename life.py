@@ -33,8 +33,8 @@ def grid_to_string(grid):
     # unicode circle to represent cells that are alive
     alive = u'\u25ce'
     grid_string = ""
-    for row in range(10):
-        for col in range(10):
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
             if grid[row, col] == 0:
                 grid_string += ". "
             else:
