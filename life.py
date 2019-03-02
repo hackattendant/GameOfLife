@@ -83,13 +83,13 @@ def get_next_generation(rows, cols, grid, next_grid):
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
     rows = 15
-    cols = 10
-    test_grid = np.zeros((10, 10), int)
+    cols = 15
+    test_grid = np.zeros((rows, cols), int)
     # np.fill_diagonal(test_grid, 1)
 
     # add glider to test grid
     test_grid[:3, :3] = glider
-    next_test_grid = np.zeros((10, 10))
+    next_test_grid = np.zeros((rows, cols))
 
     for i in range(100):
         clear_screen()
