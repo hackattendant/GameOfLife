@@ -81,10 +81,10 @@ if __name__ == "__main__":
     test_grid[:3, :3] = glider
     next_test_grid = np.zeros((10, 10))
 
-    for i in range(10):
+    for i in range(100):
         clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
-        time.sleep(1 / 3.0)
+        time.sleep(1 / 10.0)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
