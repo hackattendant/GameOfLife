@@ -10,13 +10,6 @@ glider = np.array([[1, 0, 0],
                    [0, 1, 1],
                    [1, 1, 0]])
 
-# create explicit 10 x 10 grid
-test_grid = np.zeros((10, 10), int)
-# np.fill_diagonal(test_grid, 1)
-
-# add glider to test grid
-test_grid[:3, :3] = glider
-
 
 def grid_to_string(grid):
     """Takes in grid of 1's and 0's and turns them into a printable string.
@@ -29,7 +22,6 @@ def grid_to_string(grid):
         A single string with '.' representing dead cells and a unicode circle
             representing the alive cells is returned.
     """
-
     # unicode circle to represent cells that are alive
     alive = u'\u25ce'
     grid_string = ""
@@ -44,6 +36,42 @@ def grid_to_string(grid):
     return grid_string
 
 
+def get_live_neighbors(row, col, rows, cols, grid):
+    life_sum = 0
+    for i in range(-1, 2):
+        for j in range(-1, 2):
+            if not (i == 0 and j == 0):
+                life_sum += grid[((row + i) % rows)][((col + j) % cols)]
+    return life_sum
+
+
+def get_next_generation(rows, cols, grid, next_grid):
+    for row in range(rows):
+        for col in range(cols):
+            # Get the number of live cells adjacent to the cell grid[row][col]
+            live_neighbors = get_live_neighbors(row, col, rows, cols, grid)
+            if live_neighbors < 2 or live_neighbors > 3:
+                next_grid[row][col] = 0
+            elif live_neighbors == 3 and grid[row][col] == 0:
+                next_grid[row][col] = 1
+            else:
+                next_grid[row][col] = grid[row][col]
+
+
 if __name__ == "__main__":
-    grid_string = grid_to_string(test_grid)
-    print(grid_string)
+    # create explicit 10 x 10 grid
+    rows = 10
+    cols = 10
+    test_grid = np.zeros((10, 10), int)
+    # np.fill_diagonal(test_grid, 1)
+
+    # add glider to test grid
+    test_grid[:3, :3] = glider
+    next_test_grid = np.zeros((10, 10))
+
+    for i in range(10):
+        print(grid_to_string(test_grid))
+        get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
+        print("\n")
+        # print(grid_to_string(next_test_grid))
+        test_grid, next_test_grid = next_test_grid, test_grid
