@@ -26,7 +26,7 @@ def grid_to_string(grid):
             representing the alive cells is returned.
     """
     # unicode circle to represent cells that are alive
-    alive = u'\u25ce'
+    alive = u'\u2588'
     grid_string = ""
     for row in range(len(grid)):
         for col in range(len(grid[0])):
@@ -85,6 +85,6 @@ if __name__ == "__main__":
         clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
-        time.sleep(1 / 10.0)
+        time.sleep(1 / 9.0)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
