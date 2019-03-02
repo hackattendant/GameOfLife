@@ -78,13 +78,26 @@ def get_live_neighbors(row, col, grid):
         for j in range(-1, 2):
             if not (i == 0 and j == 0):
                 life_sum += grid[((row + i) % rows)][((col + j) % cols)]
+
     return life_sum
 
 
-def get_next_generation(rows, cols, grid, next_grid):
+def get_next_generation(grid, next_grid):
+    """Determins the next generation by deciding which cells live and die in the
+        current generation passed in.
+
+    Args:
+        grid (np.array): The grid that represents the current alive and dead
+            cells.
+        next_grid (np.array): The grid that represents the next generation.
+
+    Returns:
+        None
+    """
+    rows = len(grid)
+    cols = len(grid[0])
     for row in range(rows):
         for col in range(cols):
-            # Get the number of live cells adjacent to the cell grid[row][col]
             live_neighbors = get_live_neighbors(row, col, grid)
             if live_neighbors < 2 or live_neighbors > 3:
                 next_grid[row][col] = 0
@@ -108,7 +121,7 @@ if __name__ == "__main__":
     for i in range(100):
         clear_screen()
         print(grid_to_string(test_grid))
-        get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
+        get_next_generation(list(test_grid), list(next_test_grid))
         time.sleep(0.3)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
