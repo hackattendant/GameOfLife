@@ -14,6 +14,22 @@ glider = np.array([[1, 0, 0],
                    [1, 1, 0]])
 
 
+def clear_screen():
+    """Attempts to clear the terminal/console/screen of operating system being
+            used to run the program.
+
+    Args: None.
+
+    Returns: None.
+    """
+    if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
+        os.system('clear')
+    elif sys.platform.startswith('win'):
+        os.system('cls')
+    else:
+        print("Program unable to clear your screen\n\r")
+
+
 def grid_to_string(grid):
     """Takes in grid of 1's and 0's and turns them into a printable string.
 
@@ -61,20 +77,7 @@ def get_next_generation(rows, cols, grid, next_grid):
                 next_grid[row][col] = grid[row][col]
 
 
-def clear_screen():
-    """Attempts to clear the terminal/console/screen of operating system being
-            used to run the program.
 
-    Args: None.
-
-    Returns: None.
-    """
-    if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('win'):
-        os.system('cls')
-    else:
-        print("Program unable to clear your screen\n\r")
 
 
 if __name__ == "__main__":
