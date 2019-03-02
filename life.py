@@ -64,11 +64,12 @@ def get_live_neighbors(row, col, grid):
             check.
         col (int): The column of the center cell with padding of cells we want
             to check.
-        rows (int): The number of rows that the grid has.
-        cols (int): The number of columns that the grid has.
+        grid (np.array): The grid of 1's and 0's that represent alive and dead
+            cells.
 
     Returns:
-
+        The life_sum number that is the number of alive cells surrounding the
+            cell that we are checking.
     """
     rows = len(grid)
     cols = len(grid[0])
@@ -108,6 +109,6 @@ if __name__ == "__main__":
         clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
-        time.sleep(0.45)
+        time.sleep(0.3)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
