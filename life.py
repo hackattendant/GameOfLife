@@ -42,7 +42,7 @@ def grid_to_string(grid):
             representing the alive cells is returned.
     """
     # unicode circle to represent cells that are alive
-    alive = u'\u2588'
+    alive = u'\u25ce'
     grid_string = ""
     for row in range(len(grid)):
         for col in range(len(grid[0])):
@@ -55,7 +55,23 @@ def grid_to_string(grid):
     return grid_string
 
 
-def get_live_neighbors(row, col, rows, cols, grid):
+def get_live_neighbors(row, col, grid):
+    """Gets the number of current live cells that are padding around the center
+        cell at the element of [row, col] passed in.
+
+    Args:
+        row (int): The row of the center cell with padding of cells we want to
+            check.
+        col (int): The column of the center cell with padding of cells we want
+            to check.
+        rows (int): The number of rows that the grid has.
+        cols (int): The number of columns that the grid has.
+
+    Returns:
+
+    """
+    rows = len(grid)
+    cols = len(grid[0])
     life_sum = 0
     for i in range(-1, 2):
         for j in range(-1, 2):
@@ -68,7 +84,7 @@ def get_next_generation(rows, cols, grid, next_grid):
     for row in range(rows):
         for col in range(cols):
             # Get the number of live cells adjacent to the cell grid[row][col]
-            live_neighbors = get_live_neighbors(row, col, rows, cols, grid)
+            live_neighbors = get_live_neighbors(row, col, grid)
             if live_neighbors < 2 or live_neighbors > 3:
                 next_grid[row][col] = 0
             elif live_neighbors == 3 and grid[row][col] == 0:
@@ -77,15 +93,12 @@ def get_next_generation(rows, cols, grid, next_grid):
                 next_grid[row][col] = grid[row][col]
 
 
-
-
-
 if __name__ == "__main__":
     # create explicit 10 x 10 grid
     rows = 15
     cols = 15
     test_grid = np.zeros((rows, cols), int)
-    np.fill_diagonal(test_grid, 1)
+    # np.fill_diagonal(test_grid, 1)
 
     # add glider to test grid
     test_grid[:3, :3] = glider
@@ -95,6 +108,6 @@ if __name__ == "__main__":
         clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(rows, cols, list(test_grid), list(next_test_grid))
-        time.sleep(0.7)
+        time.sleep(0.45)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
