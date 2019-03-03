@@ -124,9 +124,9 @@ def prompt():
 
     Returns:
         The value of their choice is returned either 1 or 2.  return of 1 means
-            we should start a random configuration.  Return of 2 means we should
-            load our grid with gliders, simple configs, spacship, glidergun,
-            and a random section as well.
+            we should start a random configuration.  Return of 2 means we
+            should load our grid with gliders, simple configs,
+            spacship, glidergun, and a random section as well.
     """
     print("~~~~ Conway's Game of Life ~~~~\n")
     print(" Please make a selection for initial cells on grid.\n")
