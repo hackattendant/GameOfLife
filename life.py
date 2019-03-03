@@ -91,9 +91,11 @@ def clear_screen():
     """Attempts to clear the terminal/console/screen of operating system being
             used to run the program.
 
-    Args: None.
+    Args:
+        None.
 
-    Returns: None.
+    Returns:
+        None.
     """
     if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
         os.system('clear')
@@ -104,9 +106,8 @@ def clear_screen():
 
 
 def resize_screen(rows, cols):
-    if cols < 32:
-        cols = 32
-
+    if cols < 30:
+        cols = 30
     if sys.platform.startswith('win'):
         command = "mode con: cols={0} lines={1}".format(cols + cols, rows + 5)
         os.system(command)
@@ -118,7 +119,7 @@ def resize_screen(rows, cols):
 
 
 def prompt_cells():
-    """Prompts the user to make a selection for grid before starting game.\
+    """Prompts the user to make a selection for grid before starting game.
 
     Args:
         None
@@ -230,7 +231,6 @@ if __name__ == "__maind__":
     # random configuration
     r = np.random.random((10, 20))
     test_grid[20:30, 30:50] = (r > 0.75)
-
 
     # adds a pulsar configuration to grid
     # test_grid[2, 4:7] = 1
