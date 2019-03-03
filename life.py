@@ -117,7 +117,7 @@ def resize_screen(rows, cols):
         print("Unable to resize terminal screen.\n\r")
 
 
-def prompt():
+def prompt_cells():
     """Prompts the user to make a selection for grid before starting game.\
 
     Args:
@@ -146,7 +146,7 @@ def prompt():
     return answer
 
 
-prompt()
+prompt_cells()
 
 # tests
 if __name__ == "__main_d_":
