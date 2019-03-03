@@ -22,7 +22,7 @@ def grid_to_string(grid):
             representing the alive cells is returned.
     """
     # unicode circle to represent cells that are alive
-    alive = u'\u25ce'
+    alive = u'\u2b24'
     grid_string = ""
     for row in range(len(grid)):
         for col in range(len(grid[0])):
@@ -121,11 +121,17 @@ if __name__ == "__main__":
     glider = np.array([[1, 0, 0],
                        [0, 1, 1],
                        [1, 1, 0]])
+
     reverse_glider = np.fliplr(glider)
+
     simple = np.array([[0, 1, 0],
                        [1, 1, 1],
                        [0, 1, 0]])
 
+    spaceship = np.array([[0, 0, 1, 1, 0],
+                          [1, 1, 0, 1, 1],
+                          [1, 1, 1, 1, 0],
+                          [0, 1, 1, 0, 0]])
     glider_gun =\
     [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
@@ -137,10 +143,24 @@ if __name__ == "__main__":
      [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
+    # add glider gun to grid
+    test_grid[40:49, 5:41] = glider_gun
 
+    # add regular glider to grid
+    test_grid[1:4, 1:4] = glider
 
+    # add simple configuration to grid
+    test_grid[23:26, 15:18] = simple
 
-    test_grid[1:10,1:37] = glider_gun
+    # add reverse glider to grid
+    test_grid[5:8, 51:54] = reverse_glider
+
+    # add spaceship
+    test_grid[28:32, 28:33] = spaceship
+
+    # random configuration
+    r = np.random.random((10, 20))
+    test_grid[20:30, 30:50] = (r > 0.75)
 
 
     # adds a pulsar configuration to grid
