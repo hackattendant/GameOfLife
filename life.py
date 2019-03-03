@@ -117,12 +117,39 @@ def resize_screen(rows, cols):
         print("Unable to resize terminal screen.\n\r")
 
 
-def game():
-    pass
+def prompt():
+    """Prompts the user to make a selection for grid before starting game.\
 
+    Args:
+
+    Returns:
+        The value of their choice is returned either 1 or 2.  return of 1 means
+            we should start a random configuration.  Return of 2 means we should
+            load our grid with gliders, simple configs, spacship, glidergun,
+            and a random section as well.
+    """
+    print("~~~~ Conway's Game of Life ~~~~\n")
+    print(" Please make a selection for initial cells on grid.\n")
+    print("1. Only Randoms on grid.")
+    print("2. Gliders, Simples, Glider Guns, Spaceship, and Randoms on grid.")
+    while True:
+        try:
+            answer = int(input("\nSelection: "))
+        except ValueError:
+            print("\nPlease enter in either 1 or 2 only.")
+            continue
+        if answer not in [1, 2]:
+            print(type(answer))
+            print("\nPlease enter in either 1 or 2 only.")
+        else:
+            break
+    return answer
+
+
+prompt()
 
 # tests
-if __name__ == "__main__":
+if __name__ == "__main_d_":
 
     # create explicit 10 x 10 grid
     rows = 55
