@@ -65,7 +65,7 @@ def get_live_neighbors(row, col, grid):
 
 
 def get_next_generation(grid, next_grid):
-    """Determins the next generation by deciding which cells live and die in
+    """Determines the next generation by deciding which cells live and die in
         the current generation passed in.
 
     Args:
@@ -74,7 +74,7 @@ def get_next_generation(grid, next_grid):
         next_grid (np.array): The grid that represents the next generation.
 
     Returns:
-        None, grids passed in are mainpulated.
+        None, grids passed in are manipulated.
     """
     # get num of rows and cols
     rows = len(grid)
