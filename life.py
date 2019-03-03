@@ -121,6 +121,7 @@ def prompt_cells():
     """Prompts the user to make a selection for grid before starting game.\
 
     Args:
+        None
 
     Returns:
         The value of their choice is returned either 1 or 2.  return of 1 means
@@ -146,10 +147,37 @@ def prompt_cells():
     return answer
 
 
-prompt_cells()
+def prompt_iterations():
+    """Prompts the user to make a selection for how many iterations to run.
 
+    Args:
+        None
+    Returns:
+
+    """
+    print("\nChoose iterations for game to run (1 - 10,000)")
+    while True:
+        try:
+            answer = int(input("\nIterations: "))
+        except ValueError:
+            print("\nPlease enter in an int between 1 & 10,000 only.")
+            continue
+        iter_range = [xi + 1 for xi in range(10000)]
+        if answer not in iter_range:
+            print(type(answer))
+            print("\nPlease enter in an int between 1 & 10,000 only.")
+        else:
+            break
+    return answer
+
+    pass
+
+
+prompt_cells()
+test = prompt_iterations()
+print(test)
 # tests
-if __name__ == "__main_d_":
+if __name__ == "__maind__":
 
     # create explicit 10 x 10 grid
     rows = 55
