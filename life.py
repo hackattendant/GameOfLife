@@ -22,7 +22,7 @@ def grid_to_string(grid):
             representing the alive cells is returned.
     """
     # unicode circle to represent cells that are alive
-    alive = u'\u2b24'
+    alive = u'\u25cf'
     grid_string = ""
     for row in range(len(grid)):
         for col in range(len(grid[0])):
@@ -101,6 +101,20 @@ def clear_screen():
         os.system('cls')
     else:
         print("Program unable to clear your screen\n\r")
+
+
+def resize_screen(rows, cols):
+    if cols < 32:
+        cols = 32
+
+    if sys.platform.startswith('win'):
+        command = "mode con: cols={0} lines={1}".format(cols + cols, rows + 5)
+        os.system(command)
+    elif sys.platform.startswith('linux') or sys.platform.startswith('darwin'):
+        command = "\x1b[8;{rows};{cols}t".format(rows=rows+3, cols=cols+cols)
+        sys.stdout.write(command)
+    else:
+        print("Unable to resize terminal screen.\n\r")
 
 
 def game():
@@ -187,6 +201,7 @@ if __name__ == "__main__":
     # test_grid[row-3:row, row-8:row-5] = simple
     # test_grid[30:33, 30:33] = simple
 
+    resize_screen(rows, cols)
     for i in range(10000):
         clear_screen()
         print(grid_to_string(test_grid))
