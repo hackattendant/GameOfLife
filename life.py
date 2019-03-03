@@ -112,7 +112,7 @@ def resize_screen(rows, cols):
         command = "mode con: cols={0} lines={1}".format(cols + cols, rows + 5)
         os.system(command)
     elif sys.platform.startswith('linux') or sys.platform.startswith('darwin'):
-        command = "\x1b[8;{rows};{cols}t".format(rows=rows+3, cols=cols+cols)
+        command = "\x1b[8;{rows};{cols}t".format(rows=rows+10, cols=cols+cols)
         sys.stdout.write(command)
     else:
         print("Unable to resize terminal screen.\n\r")
@@ -133,7 +133,7 @@ def prompt_cells():
     print("~~~~ Conway's Game of Life ~~~~\n")
     print(" Please make a selection for initial cells on grid.\n")
     print("1. Only Randoms on grid.")
-    print("2. Gliders, Simples, Glider Guns, Spaceship, and Randoms on grid.")
+    print("2. Glider, Simple, Glider Guns, Spaceship, and Random on grid.")
     while True:
         try:
             answer = int(input("\nSelection: "))
@@ -145,6 +145,7 @@ def prompt_cells():
             print("\nPlease enter in either 1 or 2 only.")
         else:
             break
+
     return answer
 
 
@@ -169,25 +170,12 @@ def prompt_iterations():
             print("\nPlease enter in an int between 1 & 10,000 only.")
         else:
             break
+
     return answer
 
-    pass
 
-
-prompt_cells()
-test = prompt_iterations()
-print(test)
-# tests
-if __name__ == "__maind__":
-
-    # create explicit 10 x 10 grid
-    rows = 55
-    cols = 55
-    # test_grid = np.zeros((rows, cols), int)
-    test_grid = np.zeros((rows, cols))
-    next_test_grid = np.zeros((rows, cols))
-
-    # add configurations to grid
+def game():
+    # initialize configurations
     glider = np.array([[1, 0, 0],
                        [0, 1, 1],
                        [1, 1, 0]])
@@ -213,24 +201,68 @@ if __name__ == "__maind__":
      [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
-    # add glider gun to grid
-    test_grid[40:49, 5:41] = glider_gun
+    # clear the screen to print out prompts to User
+    clear_screen()
+    # set rows and columns for grid size
+    rows = 55
+    cols = 55
+    # initialize grid
+    my_grid = np.zeros((rows, cols), int)
+    next_grid = np.zeros((rows, cols), int)
 
-    # add regular glider to grid
-    test_grid[1:4, 1:4] = glider
+    # get configuration selection and iterations for game to run
+    cell_configuration = prompt_cells()
+    grid_iterations = prompt_iterations()
 
-    # add simple configuration to grid
-    test_grid[23:26, 15:18] = simple
+    # configuration for completely random board (user slection 1)
+    if cell_configuration == 1:
+        print("need to implement pure random config here")
 
-    # add reverse glider to grid
-    test_grid[5:8, 51:54] = reverse_glider
+    # configuration for curated grid with custom configurations
+    #   (user selection 2)
+    else:
+        # add glider gun to grid
+        my_grid[40:49, 5:41] = glider_gun
 
-    # add spaceship
-    test_grid[28:32, 28:33] = spaceship
+        # add regular glider to grid
+        my_grid[1:4, 1:4] = glider
 
-    # random configuration
-    r = np.random.random((10, 20))
-    test_grid[20:30, 30:50] = (r > 0.75)
+        # add reverse glider to grid
+        my_grid[5:8, 51:54] = reverse_glider
+
+        # add simple configuration to grid
+        my_grid[23:26, 15:18] = simple
+
+        # add spaceship to grid
+        my_grid[28:32, 28:33] = spaceship
+
+        # add small random configuration to grid
+        r = np.random.random((10, 20))
+        my_grid[20:30, 30:50] = (r > 0.75)
+
+
+    # resize window to fit grid
+    resize_screen(rows, cols)
+    # run game for iterations specified by user
+    for i in range(grid_iterations):
+        clear_screen()
+        print("Iteration {}".format(i + 1))
+        print(grid_to_string(my_grid))
+        get_next_generation(list(my_grid), list(next_grid))
+        time.sleep(1 / 5.0)
+        # update grids for next generation of printing
+        my_grid, next_grid = next_grid, my_grid
+
+
+
+
+
+game()
+# tests
+# if __name__ == "__maind__":
+
+
+
 
     # adds a pulsar configuration to grid
     # test_grid[2, 4:7] = 1
@@ -255,12 +287,3 @@ if __name__ == "__maind__":
     # test_grid[16:19, :3] = simple
     # test_grid[row-3:row, row-8:row-5] = simple
     # test_grid[30:33, 30:33] = simple
-
-    resize_screen(rows, cols)
-    for i in range(10000):
-        clear_screen()
-        print(grid_to_string(test_grid))
-        get_next_generation(list(test_grid), list(next_test_grid))
-        time.sleep(1 / 6.0)
-        # print(grid_to_string(next_test_grid))
-        test_grid, next_test_grid = next_test_grid, test_grid
