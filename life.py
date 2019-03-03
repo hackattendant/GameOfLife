@@ -8,33 +8,8 @@ import os
 import time
 import numpy as np
 
-# configurations
-glider = np.array([[1, 0, 0],
-                   [0, 1, 1],
-                   [1, 1, 0]])
-
-simple = np.array([[0, 1, 0],
-                   [1, 1, 1],
-                   [0, 1, 0]])
-
 
 # helper functions
-def clear_screen():
-    """Attempts to clear the terminal/console/screen of operating system being
-            used to run the program.
-
-    Args: None.
-
-    Returns: None.
-    """
-    if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('win'):
-        os.system('cls')
-    else:
-        print("Program unable to clear your screen\n\r")
-
-
 def grid_to_string(grid):
     """Takes in grid of 1's and 0's and turns them into a printable string.
 
@@ -112,27 +87,90 @@ def get_next_generation(grid, next_grid):
                 next_grid[row][col] = grid[row][col]
 
 
+def clear_screen():
+    """Attempts to clear the terminal/console/screen of operating system being
+            used to run the program.
+
+    Args: None.
+
+    Returns: None.
+    """
+    if sys.platform.startswith('darwin') or sys.platform.startswith('linux'):
+        os.system('clear')
+    elif sys.platform.startswith('win'):
+        os.system('cls')
+    else:
+        print("Program unable to clear your screen\n\r")
+
+
+def game():
+    pass
+
+
 # tests
 if __name__ == "__main__":
-    # create explicit 10 x 10 grid
-    rows = 30
-    cols = 30
-    test_grid = np.zeros((rows, cols), int)
-    np.fill_diagonal(test_grid, 1)
 
-    # add glider to test grid
-    test_grid[:3, :3] = glider
+    # create explicit 10 x 10 grid
+    rows = 60
+    cols = 60
+    # test_grid = np.zeros((rows, cols), int)
+    test_grid = np.zeros((rows, cols))
     next_test_grid = np.zeros((rows, cols))
-    test_grid[19:22, :3] = glider
-    test_grid[:3, 15:18] = glider
-    test_grid[16:19, :3] = simple
+
+    # add configurations to grid
+    glider = np.array([[1, 0, 0],
+                       [0, 1, 1],
+                       [1, 1, 0]])
+    reverse_glider = np.fliplr(glider)
+    simple = np.array([[0, 1, 0],
+                       [1, 1, 1],
+                       [0, 1, 0]])
+
+    glider_gun =\
+    [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
+     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
+     [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+     [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
+     [1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     [1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
+     [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
+     [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+
+
+
+    test_grid[1:10,1:37] = glider_gun
+
+
+    # adds a pulsar configuration to grid
+    # test_grid[2, 4:7] = 1
+    # test_grid[4:7, 7] = 1
+    # test_grid += test_grid.T
+    # test_grid += test_grid[:, ::-1]
+    # test_grid += test_grid[::-1, :]
+
+    # add reverse glider to grid
+    # test_grid[:3, 47:50] = reverse_glider
+    #
+    # test_grid[5:8, :3] = glider
+
+    # np.fill_diagonal(test_grid, 1)
+
+    # add gliders to test grid
+    # test_grid[:3, :3] = glider
+    # test_grid[19:22, :3] = glider
+    # test_grid[:3, 15:18] = glider
+
+    # add simple configuration to grid
+    # test_grid[16:19, :3] = simple
     # test_grid[row-3:row, row-8:row-5] = simple
     # test_grid[30:33, 30:33] = simple
 
-    for i in range(100):
+    for i in range(10000):
         clear_screen()
         print(grid_to_string(test_grid))
         get_next_generation(list(test_grid), list(next_test_grid))
-        time.sleep(0.3)
+        time.sleep(1 / 6.0)
         # print(grid_to_string(next_test_grid))
         test_grid, next_test_grid = next_test_grid, test_grid
