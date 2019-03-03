@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e898bce-5de1-4e04-86a4-15822ed1d660" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/life.py" beforeDir="false" afterPath="$PROJECT_DIR$/life.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/life.py" beforeDir="false" afterPath="$PROJECT_DIR$/conway.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,10 +13,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/life.py">
+        <entry file="file://$PROJECT_DIR$/conway.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="201" column="25" lean-forward="true" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
+            <state relative-caret-position="333">
+              <caret line="145" column="54" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
               <folding>
                 <element signature="e#123#133#0" expanded="true" />
               </folding>
@@ -33,6 +33,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/life.py" />
+        <option value="$PROJECT_DIR$/conway.py" />
       </list>
     </option>
   </component>
@@ -92,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551634827350</updated>
-      <workItem from="1551634832159" duration="1960000" />
+      <workItem from="1551634832159" duration="2036000" />
     </task>
     <task id="LOCAL-00001" summary="Added project to pycharm for checking formatting/spelling/etc easier.  Updated doc strings and fixed typos">
       <created>1551636502304</created>
@@ -105,7 +106,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1960000" />
+    <option name="totallyTimeSpent" value="2036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="539" y="881" width="1626" height="872" extended-state="0" />
@@ -169,10 +170,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added project to pycharm for checking formatting/spelling/etc easier.  Updated doc strings and fixed typos" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/life.py">
+    <entry file="file://$PROJECT_DIR$/conway.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="201" column="25" lean-forward="true" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
+        <state relative-caret-position="333">
+          <caret line="145" column="54" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
           <folding>
             <element signature="e#123#133#0" expanded="true" />
           </folding>

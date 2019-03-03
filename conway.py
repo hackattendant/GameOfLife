@@ -143,7 +143,7 @@ def prompt_cells():
             should load our grid with gliders, simple configs,
             spaceship, glider gun, and a random section as well.
     """
-    print("~~~~ Conway's Game of Life ~~~~\n")
+    print("~~~~~~~~~~~~ Conway's Game of Life ~~~~~~~~~~~~\n")
     print(" Please make a selection for initial cells on grid.\n")
     print("1. Only Randoms on grid.")
     print("2. Glider, Simple, Glider Gun, Spaceship, and Random on grid.")
