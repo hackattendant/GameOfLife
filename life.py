@@ -23,7 +23,9 @@ def grid_to_string(grid):
     """
     # unicode circle to represent cells that are alive
     alive = u'\u25cf'
+    # empty string to hold strings built from array
     grid_string = ""
+    # build string for printing
     for row in range(len(grid)):
         for col in range(len(grid[0])):
             if grid[row, col] == 0:
@@ -72,10 +74,12 @@ def get_next_generation(grid, next_grid):
         next_grid (np.array): The grid that represents the next generation.
 
     Returns:
-        None
+        None, grids passed in are mainpulated.
     """
+    # get num of rows and cols
     rows = len(grid)
     cols = len(grid[0])
+    # build next generation of cells to show during next iteration of game
     for row in range(rows):
         for col in range(cols):
             live_neighbors = get_live_neighbors(row, col, grid)
@@ -106,6 +110,15 @@ def clear_screen():
 
 
 def resize_screen(rows, cols):
+    """Resizes the screen/console/terminal to fit grid size in order for pseudo movie to 'run' well.
+
+    Args:
+        row (int): number of rows in grid.
+        cols (int): number of columns in grid.
+
+    Returns:
+        None, the terminal/console/window of system is just resized with commands.
+    """
     if cols < 30:
         cols = 30
     if sys.platform.startswith('win'):
@@ -122,13 +135,13 @@ def prompt_cells():
     """Prompts the user to make a selection for grid before starting game.
 
     Args:
-        None
+        None.
 
     Returns:
         The value of their choice is returned either 1 or 2.  return of 1 means
             we should start a random configuration.  Return of 2 means we
             should load our grid with gliders, simple configs,
-            spacship, glidergun, and a random section as well.
+            spaceship, glider gun, and a random section as well.
     """
     print("~~~~ Conway's Game of Life ~~~~\n")
     print(" Please make a selection for initial cells on grid.\n")
@@ -153,9 +166,9 @@ def prompt_iterations():
     """Prompts the user to make a selection for how many iterations to run.
 
     Args:
-        None
+        None.
     Returns:
-
+        The number of iterations between 1 and 10,000 is returned for the loop that shows the grid.
     """
     print("\nChoose iterations for game to run (1 - 10,000)")
     while True:
@@ -175,6 +188,13 @@ def prompt_iterations():
 
 
 def game():
+    """Configures the grid and runs the game.
+
+    Args:
+        None.
+
+    Returns:
+        None. The game is displayed in the console."""
     # initialize configurations
     glider = np.array([[1, 0, 0],
                        [0, 1, 1],
