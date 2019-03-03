@@ -125,8 +125,8 @@ def game():
 if __name__ == "__main__":
 
     # create explicit 10 x 10 grid
-    rows = 60
-    cols = 60
+    rows = 55
+    cols = 55
     # test_grid = np.zeros((rows, cols), int)
     test_grid = np.zeros((rows, cols))
     next_test_grid = np.zeros((rows, cols))
