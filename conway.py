@@ -110,7 +110,8 @@ def clear_screen():
 
 
 def resize_screen(rows, cols):
-    """Resize the screen/console/terminal to fit grid size in order for pseudo movie to 'run' well.
+    """Resize the screen/console/terminal to fit grid size in order for pseudo movie to
+    	'run' well.
 
     Args:
         rows (int): number of rows in grid.
@@ -167,7 +168,8 @@ def prompt_iterations():
     Args:
         None.
     Returns:
-        The number of iterations between 1 and 10,000 is returned for the loop that shows the grid.
+        The number of iterations between 1 and 10,000 is returned for the loop that shows
+        	the grid.
     """
     print("\nChoose iterations for game to run (1 - 10,000)")
     while True:
@@ -239,7 +241,8 @@ def game():
         for row in range(rows):
             grid_rows = []
             for col in range(cols):
-                # Generate a random number and based on that decide whether to add a live or dead cell to the grid
+                # Generate a random number and based on that decide whether to add 
+                #   a live or dead cell to the grid
                 if np.random.random_integers(0, 7) == 0:
                     grid_rows += [1]
                 else:
